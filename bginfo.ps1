@@ -35,6 +35,7 @@ function Add-Font {
 }
 
 cd c:/install/static
+Add-Font "Mulish-Regular.ttf"
 Add-Font "Mulish-Black.ttf"
 Add-Font "Mulish-Bold.ttf"
 Add-Font "Mulish-Italic.ttf"
