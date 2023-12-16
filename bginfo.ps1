@@ -39,21 +39,6 @@ Add-Font "Mulish-Black.ttf"
 Add-Font "Mulish-Bold.ttf"
 Add-Font "Mulish-Italic.ttf"
 
-
-
-# Loop through each font file and install
-foreach ($fontFile in $fontFiles) {
-    $filePath = Join-Path -Path $fontDirectory -ChildPath $fontFile
-
-    # Check if the font file exists
-    if (Test-Path -Path $filePath) {
-        # Install the font using Install-Font function
-        Install-Font -fontFile (Get-Item $filePath)
-    } else {
-        Write-Output "Font file not found: $fontFile"
-    }
-}
-
 # Download URL for BGInfo
 $bgInfoUrl = "https://download.sysinternals.com/files/BGInfo.zip"
 $bgInfoOutput = "$downloadDirectory\BGInfo.zip"
