@@ -6,6 +6,17 @@ if (-not (Test-Path -Path $downloadDirectory)) {
     New-Item -Path $downloadDirectory -ItemType Directory
 }
 
+# Download Mulish
+$fontZipUrl = "https://fonts.google.com/download?family=Mulish"
+$zipFilePath = Join-Path -Path $downloadDirectory -ChildPath "Mulish.zip"
+Invoke-WebRequest -Uri $fontZipUrl -OutFile $zipFilePath
+
+# Extract the zip file
+Expand-Archive -Path "$zipFilePath" -DestinationPath $downloadDirectory -Force
+
+# Define the directory where the Mulish font files are extracted
+#$fontDirectory = Join-Path -Path $downloadDirectory -ChildPath "\static"
+
 # Define the specific font files to install
 $fontFiles = @("Mulish-Black.ttf", "Mulish-Bold.ttf", "Mulish-Italic.ttf")
 
@@ -29,18 +40,6 @@ Add-Font "Mulish-Bold.ttf"
 Add-Font "Mulish-Italic.ttf"
 
 
-
-
-# Download Mulish
-$fontZipUrl = "https://fonts.google.com/download?family=Mulish"
-$zipFilePath = Join-Path -Path $downloadDirectory -ChildPath "Mulish.zip"
-Invoke-WebRequest -Uri $fontZipUrl -OutFile $zipFilePath
-
-# Extract the zip file
-Expand-Archive -Path "$zipFilePath" -DestinationPath $downloadDirectory -Force
-
-# Define the directory where the Mulish font files are extracted
-$fontDirectory = Join-Path -Path $downloadDirectory -ChildPath "\static"
 
 # Loop through each font file and install
 foreach ($fontFile in $fontFiles) {
