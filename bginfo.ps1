@@ -55,6 +55,10 @@ $bgInfoPath = Get-ChildItem -Path $downloadDirectory -Recurse -Filter BGInfo.exe
 $customConfigPath = "$downloadDirectory\custom.bgi"
 
 #Accept BGInfo EULA
+$keyPath = "HKCU:\Software\Sysinternals\BGInfo"
+If (-not (Test-Path $keyPath)) {
+    New-Item -Path $keyPath -Force
+}
 Set-ItemProperty -Path "HKCU:\Software\Sysinternals\BGInfo" -Name "EulaAccepted" -Value 1 -Type DWord
 
 # Run BGInfo once immediately with custom config
