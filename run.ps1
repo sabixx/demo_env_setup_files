@@ -31,7 +31,12 @@ foreach ($item in $response) {
     DownloadFile $item.download_url $filePath
 }
 
+# Execute the chrome.ps1 script
+$scriptPath = Join-Path -Path $downloadDirectory -ChildPath "chrome.ps1"
+& $scriptPath
+
 # Execute the bginfo.ps1 script
 $scriptPath = Join-Path -Path $downloadDirectory -ChildPath "bginfo.ps1"
 & $scriptPath
+
  
