@@ -14,6 +14,7 @@ foreach ($path in $paths) {
 }
 
 # Download and Install Chrome if not installed
+  Write-Host "Downloading Google Chrome."
 if (-not $chromeInstalled) {
     $chromeInstallerUrl = "https://dl.google.com/chrome/install/latest/chrome_installer.exe"
     $installerPath = "$env:TEMP\chrome_installer.exe"
@@ -22,6 +23,7 @@ if (-not $chromeInstalled) {
     Invoke-WebRequest -Uri $chromeInstallerUrl -OutFile $installerPath
 
     # Run the installer
+    Write-Host "Installing Google Chrome..."
     Start-Process -FilePath $installerPath -Args "/silent /install" -Wait
 
     # Clean up the installer
