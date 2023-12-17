@@ -62,4 +62,4 @@ Register-ScheduledTask -Xml (Get-Content "C:\install\BGInfoLogonTask.xml" | Out-
 
 Start-ScheduledTask -TaskName "BGInfoLogon" 
  
- 
+& $downloadDirectory\custom.bgi
