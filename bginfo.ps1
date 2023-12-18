@@ -1,4 +1,5 @@
 # Define the directory for downloading and extracting the zip file
+# when changing this BGInfoLogonTask.xml must be changed as well
 $downloadDirectory = "C:\install"
 
 # Create the download directory if it doesn't exist
