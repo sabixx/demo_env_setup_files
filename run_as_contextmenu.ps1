@@ -1,1 +1,1 @@
-reg import c:\install\Run_as_admin_context_menu.reg
+reg import c:\install\context_menu.reg
