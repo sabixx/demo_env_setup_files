@@ -1,4 +1,7 @@
 
+#Show current state of winrm
+winrm get winrm/config
+
 #Enable winrm
 winrm quickconfig
  
