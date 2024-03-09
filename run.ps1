@@ -33,22 +33,22 @@ foreach ($item in $response) {
 }
 
 # Execute the python.ps1 script
-Write-Host "Install Python" -ForegroundColor Green
+Write-Host "Python..." -ForegroundColor Green
 $scriptPath = Join-Path -Path $downloadDirectory -ChildPath "python.ps1"
 & $scriptPath
 
 # enable winrm
-Write-Host "Enable Winrm" -ForegroundColor Green
+Write-Host "Winrm..." -ForegroundColor Green
 $scriptPath = Join-Path -Path $downloadDirectory -ChildPath "winrm.ps1"
 & $scriptPath
 
 # Execute the chrome.ps1 script
-Write-Host "Install chrome" -ForegroundColor Green
+Write-Host "Chrome..." -ForegroundColor Green
 $scriptPath = Join-Path -Path $downloadDirectory -ChildPath "chrome.ps1"
 & $scriptPath
 
 # Execute the bginfo.ps1 script
-Write-Host "Installing BGinfo" -ForegroundColor Green
+Write-Host "BGinfo..." -ForegroundColor Green
 $scriptPath = Join-Path -Path $downloadDirectory -ChildPath "bginfo.ps1"
 & $scriptPath
 
