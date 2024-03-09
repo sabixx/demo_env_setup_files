@@ -59,7 +59,7 @@ $scriptPath = Join-Path -Path $downloadDirectory -ChildPath "chrome.ps1"
 & $scriptPath
 
 # Execute the bginfo.ps1 script
-Write-Host "run BGinfo" -ForegroundColor Green
+Write-Host "Installing BGinfo" -ForegroundColor Green
 $scriptPath = Join-Path -Path $downloadDirectory -ChildPath "bginfo.ps1"
 & $scriptPath
 
