@@ -4,7 +4,13 @@ winrm get winrm/config
 
 #Enable winrm
 winrm quickconfig
- 
+
+# download Python
+Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.9.4/python-3.9.4-amd64.exe" -OutFile "$Env:USERPROFILE\Downloads\python-3.9.4-amd64.exe"
+
+# Install python
+Start-Process -FilePath "$Env:USERPROFILE\Downloads\python-3.9.4-amd64.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
+
 # Define the directory for downloading and extracting the zip file
 $downloadDirectory = "C:\install"
 
