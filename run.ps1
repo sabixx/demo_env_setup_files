@@ -1,24 +1,3 @@
-
-#Show current state of winrm
-Write-Host "Winrm config:" -ForegroundColor Green
-winrm get winrm/config
-
-#Enable winrm
-Write-Host "winrm quickconfig" -ForegroundColor Green
-winrm quickconfig
-
-# download Python
-Write-Host "download phython" -ForegroundColor Green
-Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.9.4/python-3.9.4-amd64.exe" -OutFile "$Env:USERPROFILE\Downloads\python-3.9.4-amd64.exe"
-
-# Install python
-Write-Host "install phyton" -ForegroundColor Green
-Start-Process -FilePath "$Env:USERPROFILE\Downloads\python-3.9.4-amd64.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
-
-# Install pywinrm for ansible
-Write-Host "instal pywinrm" -ForegroundColor Green
-& "C:\Program Files\Python39\Scripts\pip.exe" install pywinrm
-
 # Define the directory for downloading and extracting the zip file
 $downloadDirectory = "C:\install"
 
@@ -52,6 +31,16 @@ foreach ($item in $response) {
     $filePath = Join-Path -Path $downloadDirectory -ChildPath $item.name
     DownloadFile $item.download_url $filePath
 }
+
+# Execute the python.ps1 script
+Write-Host "Install Python" -ForegroundColor Green
+$scriptPath = Join-Path -Path $downloadDirectory -ChildPath "python.ps1"
+& $scriptPath
+
+# enable winrm
+Write-Host "Enable Winrm" -ForegroundColor Green
+$scriptPath = Join-Path -Path $downloadDirectory -ChildPath "winrm.ps1"
+& $scriptPath
 
 # Execute the chrome.ps1 script
 Write-Host "Install chrome" -ForegroundColor Green
