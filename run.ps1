@@ -1,3 +1,6 @@
+
+#Enable winrm
+winrm quickconfig
  
 # Define the directory for downloading and extracting the zip file
 $downloadDirectory = "C:\install"
