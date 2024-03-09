@@ -43,46 +43,40 @@ Add-Font "Mulish-Black.ttf"
 Add-Font "Mulish-Bold.ttf"
 Add-Font "Mulish-Italic.ttf"
 
-#Do not execute BGInfo when it already exists.
-$runBGInfoFirstTime = $True
+# Install BGInfo if it does not yet exists
+if (-not (Test-Path -Path "$downloadDirectory\custom.bgi")) {
 
-# Check if the file exists
-if (Test-Path -Path "$downloadDirectory\custom.bgi") {
-    $runBGInfoFirstTime = $False
-} 
+    # Download URL for BGInfo
+    $bgInfoUrl = "https://download.sysinternals.com/files/BGInfo.zip"
+    $bgInfoOutput = "$downloadDirectory\BGInfo.zip"
 
+    # Download and extract BGInfo
+    Write-Host "Download GBInfo" -ForegroundColor Green
+    Invoke-WebRequest -Uri $bgInfoUrl -OutFile $bgInfoOutput
+    Expand-Archive -LiteralPath $bgInfoOutput -DestinationPath $downloadDirectory -Force
 
-# Download URL for BGInfo
-$bgInfoUrl = "https://download.sysinternals.com/files/BGInfo.zip"
-$bgInfoOutput = "$downloadDirectory\BGInfo.zip"
+    # Find the BGInfo executable path
+    $bgInfoPath = Get-ChildItem -Path $downloadDirectory -Recurse -Filter BGInfo.exe | Select-Object -ExpandProperty FullName
 
-# Download and extract BGInfo
-Write-Host "Download GBInfo" -ForegroundColor Green
-Invoke-WebRequest -Uri $bgInfoUrl -OutFile $bgInfoOutput
-Expand-Archive -LiteralPath $bgInfoOutput -DestinationPath $downloadDirectory -Force
+    # Assume custom.bgi is already created and placed in the same folder as BGInfo.exe
+    $customConfigPath = "$downloadDirectory\custom.bgi"
 
+    # Accept BGInfo EULA
+    $keyPath = "HKCU:\Software\Sysinternals\BGInfo"
+    If (-not (Test-Path $keyPath)) {
+        New-Item -Path $keyPath -Force
+    }
+    Set-ItemProperty -Path "HKCU:\Software\Sysinternals\BGInfo" -Name "EulaAccepted" -Value 1 -Type DWord
 
-# Find the BGInfo executable path
-$bgInfoPath = Get-ChildItem -Path $downloadDirectory -Recurse -Filter BGInfo.exe | Select-Object -ExpandProperty FullName
-
-# Assume custom.bgi is already created and placed in the same folder as BGInfo.exe
-$customConfigPath = "$downloadDirectory\custom.bgi"
-
-# Accept BGInfo EULA
-$keyPath = "HKCU:\Software\Sysinternals\BGInfo"
-If (-not (Test-Path $keyPath)) {
-    New-Item -Path $keyPath -Force
-}
-Set-ItemProperty -Path "HKCU:\Software\Sysinternals\BGInfo" -Name "EulaAccepted" -Value 1 -Type DWord
-
-if ($runBGInfoFirstTime) {
     Write-Host "Running BGInfo" -ForegroundColor Green
+
     # Run BGInfo once immediately with custom config
     & $bgInfoPath $customConfigPath /timer:0
+
     # Create a Scheduled Task to run BGInfo at logon with custom config
     Register-ScheduledTask -Xml (Get-Content "C:\install\BGInfoLogonTask.xml" | Out-String) -TaskName "BGInfoLogon" -Force
     Start-ScheduledTask -TaskName "BGInfoLogon" 
 
+    #Bring BG info up, so servername can be added
     & $downloadDirectory\custom.bgi
-}
-
+} 
