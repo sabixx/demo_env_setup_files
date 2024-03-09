@@ -75,12 +75,10 @@ If (-not (Test-Path $keyPath)) {
 }
 Set-ItemProperty -Path "HKCU:\Software\Sysinternals\BGInfo" -Name "EulaAccepted" -Value 1 -Type DWord
 
-# Run BGInfo once immediately with custom config
-& $bgInfoPath $customConfigPath /timer:0
-
-
 if ($runBGInfoFirstTime) {
     Write-Host "Running BGInfo" -ForegroundColor Green
+    # Run BGInfo once immediately with custom config
+    & $bgInfoPath $customConfigPath /timer:0
     # Create a Scheduled Task to run BGInfo at logon with custom config
     Register-ScheduledTask -Xml (Get-Content "C:\install\BGInfoLogonTask.xml" | Out-String) -TaskName "BGInfoLogon" -Force
     Start-ScheduledTask -TaskName "BGInfoLogon" 
