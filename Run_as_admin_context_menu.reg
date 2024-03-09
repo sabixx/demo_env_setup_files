@@ -1,0 +1,44 @@
+﻿Windows Registry Editor Version 5.00
+
+[-HKEY_CLASSES_ROOT\.ps1]
+
+[HKEY_CLASSES_ROOT\.ps1]
+@="Microsoft.PowerShellScript.1"
+
+[-HKEY_CLASSES_ROOT\Microsoft.PowerShellScript.1]
+
+[HKEY_CLASSES_ROOT\Microsoft.PowerShellScript.1]
+"EditFlags"=dword:00020000
+"FriendlyTypeName"=hex(2):40,00,22,00,25,00,73,00,79,00,73,00,74,00,65,00,6d,\
+  00,72,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,\
+  33,00,32,00,5c,00,77,00,69,00,6e,00,64,00,6f,00,77,00,73,00,70,00,6f,00,77,\
+  00,65,00,72,00,73,00,68,00,65,00,6c,00,6c,00,5c,00,76,00,31,00,2e,00,30,00,\
+  5c,00,70,00,6f,00,77,00,65,00,72,00,73,00,68,00,65,00,6c,00,6c,00,2e,00,65,\
+  00,78,00,65,00,22,00,2c,00,2d,00,31,00,30,00,33,00,00,00
+
+[HKEY_CLASSES_ROOT\Microsoft.PowerShellScript.1\DefaultIcon]
+@="\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell_ise.exe\",1"
+
+[HKEY_CLASSES_ROOT\Microsoft.PowerShellScript.1\Shell]
+@="Open"
+
+
+[HKEY_CLASSES_ROOT\Microsoft.PowerShellScript.1\Shell\Edit-Run-with]
+"MUIVerb"="RUN AS ADMIN"
+"Extended"=-
+"SubCommands"=""
+
+[HKEY_CLASSES_ROOT\Microsoft.PowerShellScript.1\Shell\Edit-Run-with\shell\002flyout]
+"MUIVerb"="PowerShell"
+"HasLUAShield"=""
+
+[HKEY_CLASSES_ROOT\Microsoft.PowerShellScript.1\Shell\Edit-Run-with\shell\002flyout\Command]
+@="\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \"-Command\" \"\"& {Start-Process PowerShell.exe -ArgumentList '-ExecutionPolicy RemoteSigned -File \\\"%1\\\"' -Verb RunAs}\""
+
+
+[HKEY_CLASSES_ROOT\Microsoft.PowerShellScript.1\Shell\Edit-Run-with\shell\006flyout]
+"MUIVerb"="PowerShell ISE"
+"HasLUAShield"=""
+
+[HKEY_CLASSES_ROOT\Microsoft.PowerShellScript.1\Shell\Edit-Run-with\shell\006flyout\Command]
+@="PowerShell -windowstyle hidden -Command \"Start-Process cmd -ArgumentList '/s,/c,start PowerShell_ISE.exe \"\"%1\"\"'  -Verb RunAs\""
