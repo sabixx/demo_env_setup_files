@@ -32,10 +32,10 @@ foreach ($item in $response) {
     DownloadFile $item.download_url $filePath
 }
 
-# Execute the python.ps1 script
-Write-Host "Python..." -ForegroundColor Green
-$scriptPath = Join-Path -Path $downloadDirectory -ChildPath "python.ps1"
-& $scriptPath
+# Execute the python.ps1 script -- not requierd ansible works without it
+#Write-Host "Python..." -ForegroundColor Green
+#$scriptPath = Join-Path -Path $downloadDirectory -ChildPath "python.ps1"
+#& $scriptPath
 
 # enable winrm
 Write-Host "Winrm..." -ForegroundColor Green
