@@ -37,6 +37,12 @@ foreach ($item in $response) {
 #$scriptPath = Join-Path -Path $downloadDirectory -ChildPath "python.ps1"
 #& $scriptPath
 
+# add runs as admin to context menu
+Write-Host "RunAsAdmin Context Menu..." -ForegroundColor Green
+$scriptPath = Join-Path -Path $downloadDirectory -ChildPath "run_as_contextmenu.ps1"
+& $scriptPath
+
+
 # enable winrm
 Write-Host "Winrm..." -ForegroundColor Green
 $scriptPath = Join-Path -Path $downloadDirectory -ChildPath "winrm.ps1"
