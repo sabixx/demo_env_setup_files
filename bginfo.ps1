@@ -46,6 +46,9 @@ Add-Font "Mulish-Italic.ttf"
 # Install BGInfo if it does not yet exists
 if (-not (Test-Path -Path "$downloadDirectory\custom.bgi")) {
 
+    #Extract default custom.bgi template without servername
+    Expand-Archive -Path "$downloadDirectory\custom.zip" -DestinationPath "$downloadDirectory" 
+
     # Download URL for BGInfo
     $bgInfoUrl = "https://download.sysinternals.com/files/BGInfo.zip"
     $bgInfoOutput = "$downloadDirectory\BGInfo.zip"
