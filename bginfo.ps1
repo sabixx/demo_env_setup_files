@@ -83,7 +83,7 @@ Register-ScheduledTask -Xml (Get-Content "C:\install\BGInfoLogonTask.xml" | Out-
 Start-ScheduledTask -TaskName "BGInfoLogon" 
 
 
-if ($runBGInfoFirstTime)) {
+if ($runBGInfoFirstTime) {
     Write-Host "Running BGInfo" -ForegroundColor Green
     & $downloadDirectory\custom.bgi
 }
