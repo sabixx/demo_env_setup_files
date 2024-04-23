@@ -58,4 +58,10 @@ Write-Host "BGinfo..." -ForegroundColor Green
 $scriptPath = Join-Path -Path $downloadDirectory -ChildPath "bginfo.ps1"
 & $scriptPath
 
- 
+
+Write-Host "Press any key to exit..."
+$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+
+# Exit the script
+exit
+
