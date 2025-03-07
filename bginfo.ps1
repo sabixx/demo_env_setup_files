@@ -8,40 +8,40 @@ if (-not (Test-Path -Path $downloadDirectory)) {
 }
 
 # Download Mulish
-Write-Host "Download Mulish" -ForegroundColor Green
-$fontZipUrl = "https://fonts.google.com/download?family=Mulish"
-$zipFilePath = Join-Path -Path $downloadDirectory -ChildPath "Mulish.zip"
-Invoke-WebRequest -Uri $fontZipUrl -OutFile $zipFilePath
+#Write-Host "Download Mulish" -ForegroundColor Green
+#$fontZipUrl = "https://fonts.google.com/download?family=Mulish"
+#$zipFilePath = Join-Path -Path $downloadDirectory -ChildPath "Mulish.zip"
+#Invoke-WebRequest -Uri $fontZipUrl -OutFile $zipFilePath
 
 # Extract the zip file
-Write-Host "Extract Mulish" -ForegroundColor Green
-Expand-Archive -Path "$zipFilePath" -DestinationPath $downloadDirectory -Force
+#Write-Host "Extract Mulish" -ForegroundColor Green
+#Expand-Archive -Path "$zipFilePath" -DestinationPath $downloadDirectory -Force
 
 # Define the directory where the Mulish font files are extracted
 #$fontDirectory = Join-Path -Path $downloadDirectory -ChildPath "\static"
 
 # Define the specific font files to install
-$fontFiles = @("Mulish-Black.ttf", "Mulish-Bold.ttf", "Mulish-Italic.ttf")
+#$fontFiles = @("Mulish-Black.ttf", "Mulish-Bold.ttf", "Mulish-Italic.ttf")
 
-function Add-Font {
-    Param([string]$fontfile)
-    Add-Type -TypeDefinition @"
-    using System;
-    using System.Runtime.InteropServices;
+#function Add-Font {
+#    Param([string]$fontfile)
+#    Add-Type -TypeDefinition @"
+#    using System;
+#    using System.Runtime.InteropServices;##
+#
+#    public class Fonts {
+#        [DllImport("gdi32.dll")]
+#        public static extern int AddFontResource(string lpszFilename);
+#    }
+#"@
+#    [Fonts]::AddFontResource($fontfile)
+#}#
 
-    public class Fonts {
-        [DllImport("gdi32.dll")]
-        public static extern int AddFontResource(string lpszFilename);
-    }
-"@
-    [Fonts]::AddFontResource($fontfile)
-}
-
-cd c:/install/static
-Add-Font "Mulish-Regular.ttf"
-Add-Font "Mulish-Black.ttf"
-Add-Font "Mulish-Bold.ttf"
-Add-Font "Mulish-Italic.ttf"
+#cd c:/install/static
+#Add-Font "Mulish-Regular.ttf"
+#Add-Font "Mulish-Black.ttf"
+#Add-Font "Mulish-Bold.ttf"
+#Add-Font "Mulish-Italic.ttf"#
 
 # Install BGInfo if it does not yet exists
 if (-not (Test-Path -Path "$downloadDirectory\custom.bgi")) {
